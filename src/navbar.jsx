@@ -26,17 +26,25 @@ const Navbar = () => {
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
 
                   <li className='text-black pb-1'>
-                    <button>Cerveza</button>
+                    <button>
+                      <span className='hover:underline'>Cerveza</span>
+                    </button>
                   </li>
                   <li className='text-black p-1'>
-                    <button>Vodka</button>
+                    <button>
+                    <span className='hover:underline'>Vodka</span>
+                      </button>
                   </li>
                   <li className='text-black p-1'>
-                    <button>Gin</button>
-                    </li>
+                    <button>
+                    <span className='hover:underline'>Gin</span>
+                      </button>
+                  </li>
                   <li className='text-black p-1'>
-                    <button>Whisky</button>
-                    </li>
+                    <button>
+                    <span className='hover:underline'>Whisky</span>
+                      </button>
+                  </li>
 
                 </ul>
               )
