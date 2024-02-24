@@ -2,15 +2,26 @@ import React from 'react'
 import './index.css'
 
 const Navbar = () => {
-    return (
-      <nav>
-        <ul className='container bg-red-500'>
-          <li>Inicio</li>
-          <li>Acerca de</li>
+  return (
+    <nav>
+      <div className='container bg-red-500'>
+        <div>
+          <img src="" alt="" />
+        </div>
+        <div>
+          <img src="" alt="" />
+          <form action="">
+            <input type="text" />
+          </form>
+        </div>
+        <ul>
+          <li>Productos</li>
           <li>Contacto</li>
+          <li>Carrito</li>
         </ul>
-      </nav>
-    );
-  };
-  
-  export default Navbar;
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
