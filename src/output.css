@@ -615,6 +615,30 @@ video {
   height: 19%;
 }
 
+.h-\[24\%\] {
+  height: 24%;
+}
+
+.h-\[8\%\] {
+  height: 8%;
+}
+
+.h-\[7\%\] {
+  height: 7%;
+}
+
+.h-\[6\.5\%\] {
+  height: 6.5%;
+}
+
+.h-\[6\.2\%\] {
+  height: 6.2%;
+}
+
+.h-\[6\%\] {
+  height: 6%;
+}
+
 .w-\[45\%\] {
   width: 45%;
 }
@@ -645,6 +669,38 @@ video {
 
 .w-\[19\%\] {
   width: 19%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-\[65\%\] {
+  width: 65%;
+}
+
+.w-\[24\%\] {
+  width: 24%;
+}
+
+.w-\[8\%\] {
+  width: 8%;
+}
+
+.w-\[7\%\] {
+  width: 7%;
+}
+
+.w-\[6\.5\%\] {
+  width: 6.5%;
+}
+
+.w-\[6\.2\%\] {
+  width: 6.2%;
+}
+
+.w-\[6\%\] {
+  width: 6%;
 }
 
 .flex-grow {
@@ -707,4 +763,9 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
