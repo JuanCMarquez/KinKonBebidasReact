@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './index.css'
+import CartWidget from './CartWidget';
 
 const Navbar = () => {
   const [showProductos, setShowProductos] = useState(false);
@@ -7,13 +8,15 @@ const Navbar = () => {
 
   return (
     <nav className='bg-black py-4 w-full'>
-      <div className='container mx-auto flex justify-between items-center'>
+      <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
           <img src="./src/assets/images/logokikonblanco2.png" alt="Icono Gorila Color" />
         </div>
         <div className='flex justify-center items-center flex-grow'>
-          <img className='p-3 h-[6.5%] w-[6.5%]' src="src/assets/images/lupablanca2.png" alt="lupaNav" />
-          <form className='bg-white p-3 h-[25%] w-[65%] rounded'>
+          <button className='p-3 h-[7%] w-[7%] border-none bg-transparent'>
+            <img src="src/assets/images/lupablanca2.png" alt="lupaNav" />
+          </button>
+          <form className='bg-white p-3 h-[25%] w-[85%] rounded'>
             <input className='bg-white p-1 h-[20%] w-full type="text"' />
           </form>
         </div>
@@ -32,18 +35,18 @@ const Navbar = () => {
                   </li>
                   <li className='text-black p-1'>
                     <button>
-                    <span className='hover:underline'>Vodka</span>
-                      </button>
+                      <span className='hover:underline'>Vodka</span>
+                    </button>
                   </li>
                   <li className='text-black p-1'>
                     <button>
-                    <span className='hover:underline'>Gin</span>
-                      </button>
+                      <span className='hover:underline'>Gin</span>
+                    </button>
                   </li>
                   <li className='text-black p-1'>
                     <button>
-                    <span className='hover:underline'>Whisky</span>
-                      </button>
+                      <span className='hover:underline'>Whisky</span>
+                    </button>
                   </li>
 
                 </ul>
@@ -68,11 +71,11 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-
+      
         <div>
-          <img src="" alt="" />
+          <CartWidget />
         </div>
-
+       
       </div>
     </nav>
   );
