@@ -4,10 +4,7 @@ import './index.css'
 
 const App = () => {
   return (
-    <div className='container bg-blue-500'>
-      <Navbar/>
-      {/* Tu contenido principal va aquí */}
-    </div>
+    <Navbar />
   );
 };
 

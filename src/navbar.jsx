@@ -3,12 +3,12 @@ import './index.css'
 
 const Navbar = () => {
   return (
-    <nav>
-      <div className='container bg-red-500'>
+    <nav className='bg-indigo-400 py-4 w-full'>
+      <div className='container mx-auto flex justify-between items-center'>
         <div>
           <img src="" alt="" />
         </div>
-        <div>
+        <div className='flex justify-center items-center flex-grow'>
           <img src="" alt="" />
           <form action="">
             <input type="text" />
