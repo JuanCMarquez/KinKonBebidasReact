@@ -3,13 +3,13 @@ import './index.css'
 
 const Navbar = () => {
   return (
-    <nav className='bg-indigo-400 py-4 w-full'>
+    <nav className='bg-black py-4 w-full'>
       <div className='container mx-auto flex justify-between items-center'>
-        <div>
-          <img src="" alt="" />
+        <div className='h-[20%] w-[20%] p-0 items-left'>
+          <img src="./src/assets/images/logokikonblanco2.png" alt="Icono Gorila Color" />
         </div>
         <div className='flex justify-center items-center flex-grow'>
-          <img src="" alt="" />
+          <img className='' src="" alt="" />
           <form className='bg-white p-3 h-[25%] w-[45%] rounded'>
             <input className='bg-white p-1 h-[20%] w-full type="text"'/>
           </form>
