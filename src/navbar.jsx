@@ -10,8 +10,8 @@ const Navbar = () => {
         </div>
         <div className='flex justify-center items-center flex-grow'>
           <img src="" alt="" />
-          <form action="">
-            <input type="text" />
+          <form className='bg-white p-3 h-[25%] w-[45%] rounded'>
+            <input className='bg-white p-1 h-[20%] w-full type="text"'/>
           </form>
         </div>
         <ul>
