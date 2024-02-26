@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className='bg-black py-4 w-full'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
-          <img src="./src/assets/images/logokikonblanco2.png" alt="Icono Gorila Color" />
+          <img src="src/assets/images/logo2KINKON.png" alt="Icono Gorila Color" />
         </div>
         <div className='flex justify-center items-center flex-grow'>
           <button className='p-3 h-[7%] w-[7%] border-none bg-transparent'>
