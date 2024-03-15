@@ -11,7 +11,7 @@ Array de productos en Mock, asigno id y se llama en este archivo.
 Info de productos está en el Mock separado. 
 Dentro de este archivo debe ir slash (barra, ruta inicial*/
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import categories from '../utils/MocksAsync.json'
 import { fakeApiCall } from '../utils/fakeApiCall.js';
