@@ -1,6 +1,6 @@
 //agrupador de componentes
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import products from '../utils/MocksAsync.json';
 import { fakeApiCall } from '../utils/fakeApiCall';
 import { ItemDetail } from "./ItemDetail";
@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
 
   }, [])
 
-  if (loading) return <h1> Loading... </h1>
+  if (loading) return <h1 className='text-white text-xl'> Loading... </h1>
 
 
   return (<>

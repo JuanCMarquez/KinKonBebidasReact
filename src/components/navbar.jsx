@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import '../index.css'
 import CartWidget from './CartWidget';
+import logo from '../assets/images/logo2KINKON.png'
+import lupa from '../assets/images/lupablanca2.png'
 
-const Navbar = () => {
+const NavBar = () => {
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
 
@@ -10,11 +12,11 @@ const Navbar = () => {
     <nav className='bg-black py-4 w-full'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
-          <img src="src/assets/images/logo2KINKON.png" alt="Icono Gorila Color" />
+          <img src={logo} alt="Icono Gorila Color" />
         </div>
         <div className='flex justify-center items-center flex-grow'>
           <button className='p-3 h-[7%] w-[7%] border-none bg-transparent'>
-            <img src="src/assets/images/lupablanca2.png" alt="lupaNav" />
+            <img src={lupa} alt="lupaNav" />
           </button>
           <form className='bg-white p-3 h-[25%] w-[85%] rounded'>
             <input className='bg-white p-1 h-[20%] w-full type="text"' />
@@ -81,4 +83,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

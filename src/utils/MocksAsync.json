@@ -1,8 +1,8 @@
 {
     "categorias": [
-    { "id": 1, "nombre": "Golosinas" },
-    { "id": 2, "nombre": "Chocolate" },
-    { "id": 3, "nombre": "Caramelos" }
+    { "id": 1, "nombre": "Cerveza" },
+    { "id": 2, "nombre": "Vodka" },
+    { "id": 3, "nombre": "Ginebra" }
   ],
     "productos": [
       {

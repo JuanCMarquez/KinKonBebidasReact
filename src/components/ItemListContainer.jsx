@@ -27,7 +27,7 @@ const ItemListContainer = () => {
 
   }, [])
 
-  if (loading) return <h1>Cargando...</h1>
+  if (loading) return <h1 className='text-white text-xl flex items-center justify-center'>Cargando...</h1>
 
 
   const getProductosByCategory = (catId) => {
@@ -40,11 +40,11 @@ const ItemListContainer = () => {
 
   return (<>
     <div>
-      <h1>Categorias</h1>
+      <h1 className='text-white text-xl flex items-center justify-center p-4 text-shadow-md'>Categorias</h1>
       <div>
         {response.categorias.map((cat) => {
           return <Link key={cat.id} to={`/category/${cat.id}`}>
-            <h2>{cat.nombre}</h2>
+            <h2 className='text-white text-xl  hover:text-green-400 flex items-center justify-center text-shadow-md'>{cat.nombre}</h2>
           </Link>
         })}
       </div>
@@ -54,7 +54,7 @@ const ItemListContainer = () => {
         productsPorCategoria.map((producto) => {
           console.log(producto)
           return (<Link key={producto.id} to={`/item/${producto.id}`}>
-            <h2>{producto.nombre}</h2>
+            <h2 className='text-white text-xl  hover:text-red-600 flex items-center justify-center'>{producto.nombre}</h2>
           </Link>)
         })
       )

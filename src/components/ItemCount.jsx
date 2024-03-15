@@ -1,6 +1,5 @@
 /*Permite agregar o sacar productos desde los contenedores principales al carrito*/
-
-import { useState } from "react";
+import React, { useState } from "react";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(initial)
@@ -24,6 +23,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     <button onClick={() => handleCountChange(-1)}>
       -
     </button>
+    <span>{count}</span>
     <button onClick={() => handleCountChange(+1)}>
       +
     </button>
