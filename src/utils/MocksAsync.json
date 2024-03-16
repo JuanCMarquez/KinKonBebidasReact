@@ -1,62 +1,108 @@
 {
-    "categorias": [
-    { "id": 1, "nombre": "Cerveza" },
-    { "id": 2, "nombre": "Vodka" },
-    { "id": 3, "nombre": "Ginebra" }
-
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Cerveza"
+    },
+    {
+      "id": 2,
+      "nombre": "Vodka"
+    },
+    {
+      "id": 3,
+      "nombre": "Ginebra"
+    }
   ],
-    "productos": [
-      {
-        "id": 1,
-        "nombre": "Temple Scottish",
-        "descripcion": "Una cerveza tipo Scottish Ale con un porcentaje de alcohol del 5.5%.",
-        "precio": 1800,
-        "stock": 100,
-        "imagen": "./assets/images/imagenCerveza1.png",
-        "isOnDiscount": false,
-        "categoria": 1
-      },
-      {
-        "id": 2,
-        "nombre": "Chocolate con leche",
-        "descripcion": "Tableta de chocolate con leche suave y cremoso.",
-        "precio": 1.00,
-        "stock": 75,
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Schokolade-braun.jpg/800px-Schokolade-braun.jpg",
-        "isOnDiscount": true,
-        "categoria": 2
-      },
-      {
-        "id": 3,
-        "nombre": "Gomitas de ositos",
-        "descripcion": "Gomitas dulces en forma de ositos, variados colores y sabores.",
-        "precio": 0.75,
-        "stock": 120,
-        "imagen": "https://i.blogs.es/b6b875/9234009120_ba9961e7c5_z/450_1000.jpg",
-        "isOnDiscount": true,
-        "categoria": 1
-      },
-      {
-        "id": 4,
-        "nombre": "Caramelos de frutas",
-        "descripcion": "Caramelos duros con sabor a frutas variadas.",
-        "precio": 0.25,
-        "stock": 200,
-        "imagen": "https://arcorencasa.com/wp-content/uploads/2023/09/20230904-1782.jpg",
-        "isOnDiscount":false,
-        "categoria":3
-      },
-      {
-        "id": 5,
-        "nombre": "Piruletas de fresa",
-        "descripcion": "Piruletas grandes con sabor a fresa",
-        "precio": 0.80,
-        "stock": 50,
-        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWNkUStwBQn7dRBtuErN62oagybIkEsfyvJdiyh_B9EbFXcRoaH7T6WmDnLH1uLoKVhfo&usqp=CAU",
-        "isOnDiscount": true,
-        "categoria": 1
-  
-      }
-    ]
-  }
-
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Temple Scottish",
+      "descripcion": "Una cerveza tipo Scottish Ale con un porcentaje de alcohol del 5.5%.",
+      "precio": 1800,
+      "stock": 120,
+      "imagen": "",
+      "isOnDiscount": false,
+      "categoria": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Temple Wolf Ipa",
+      "descripcion": "Una cerveza tipo India Pale Ale con un porcentaje de alcohol del 5.8%.",
+      "precio": 1800,
+      "stock": 120,
+      "imagen": "",
+      "isOnDiscount": false,
+      "categoria": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Honey",
+      "descripcion": "Una cerveza tipo Honey con un porcentaje de alcohol del 4.5%.",
+      "precio": 1800,
+      "stock": 120,
+      "imagen": "",
+      "isOnDiscount": false,
+      "categoria": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Smirnoff",
+      "descripcion": "Un clásico para tomar directamente o para mezclarlo como un verdadero mono sabio.",
+      "precio": 5000,
+      "stock": 60,
+      "imagen": "",
+      "isOnDiscount": true,
+      "categoria": 2
+    },
+    {
+      "id": 5,
+      "nombre": "Sernova",
+      "descripcion": "Un vodka simple y directo para golpearse el pecho.",
+      "precio": 4000,
+      "stock": 60,
+      "imagen": "",
+      "isOnDiscount": false,
+      "categoria": 2
+    },
+    {
+      "id": 6,
+      "nombre": "Absolut",
+      "descripcion": " El oso salvaje de los vodkas, reservado para gorilas de lomo plateado.",
+      "precio": 17000,
+      "stock": 12,
+      "imagen": "",
+      "isOnDiscount": true,
+      "categoria": 2
+    },
+    {
+      "id": 7,
+      "nombre": "Llave",
+      "descripcion": "Para abrir la puerta de la jaula de tu sed peligrosa.",
+      "precio": 6000,
+      "stock": 60,
+      "imagen": "",
+      "isOnDiscount": true,
+      "categoria": 3
+    },
+    {
+      "id": 8,
+      "nombre": "Gordon's",
+      "descripcion": "Un distinguido gin que permite hablar en la lengua de los orangutanes.",
+      "precio": 8000,
+      "stock": 48,
+      "imagen": "",
+      "isOnDiscount": true,
+      "categoria": 3
+    },
+    {
+      "id": 9,
+      "nombre": "Beefeater London Dry",
+      "descripcion": " El gin reservado para los gorilas que defienden su territorio.",
+      "precio": 17000,
+      "stock": 12,
+      "imagen": "",
+      "isOnDiscount": true,
+      "categoria": 3
+    }
+  ]
+}
