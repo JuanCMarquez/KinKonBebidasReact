@@ -42,7 +42,7 @@ const ItemListContainer = () => {
 
   return (<>
     <div>
-      <h1 className='text-white text-xl flex items-center justify-center p-4 text-shadow-md'>Categorias</h1>
+      <h1 className='text-white text-xl flex items-center justify-center p-4 text-shadow-md'>Categorías</h1>
       <div>
         {response.categorias.map((cat) => {
           return <Link key={cat.id} to={`/category/${cat.id}`}>
