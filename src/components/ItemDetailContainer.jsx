@@ -19,11 +19,12 @@ const ItemDetailContainer = () => {
 
   }, [])
 
-  if (loading) return <h1 className='text-white text-xl'> Loading... </h1>
+  if (loading) return <h1 className='text-white text-xl flex items-center justify-center p-2'> Cargando... </h1>
 
 
   return (<>
-    <div>
+
+    <div className='text-white text-xl flex items-center justify-center p-2'>
       {
         productsCharged.productos.length > 0 && productsCharged.productos.map((item, index) => {
           return <ItemDetail item={item} />
@@ -32,7 +33,6 @@ const ItemDetailContainer = () => {
         )
       }
     </div>
-
 
   </>);
 }

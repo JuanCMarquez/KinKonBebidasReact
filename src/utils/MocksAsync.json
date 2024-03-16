@@ -3,15 +3,16 @@
     { "id": 1, "nombre": "Cerveza" },
     { "id": 2, "nombre": "Vodka" },
     { "id": 3, "nombre": "Ginebra" }
+
   ],
     "productos": [
       {
         "id": 1,
-        "nombre": "Chicles de menta",
-        "descripcion": "Deliciosos chicles de menta, refrescantes y sabrosos.",
-        "precio": 0.50,
+        "nombre": "Temple Scottish",
+        "descripcion": "Una cerveza tipo Scottish Ale con un porcentaje de alcohol del 5.5%.",
+        "precio": 1800,
         "stock": 100,
-        "imagen": "https://lacolonia.vtexassets.com/arquivos/ids/162128-1200-auto?v=636843688625800000&width=1200&height=auto&aspect=true",
+        "imagen": "./assets/images/imagenCerveza1.png",
         "isOnDiscount": false,
         "categoria": 1
       },
@@ -58,3 +59,4 @@
       }
     ]
   }
+

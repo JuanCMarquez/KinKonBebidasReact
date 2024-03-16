@@ -36,6 +36,8 @@ const ItemListContainer = () => {
     }
   }
 
+  //Lógica para el detalle de un ítem
+
   const productsPorCategoria = getProductosByCategory(id)
 
   return (<>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import '../index.css'
 import CartWidget from './CartWidget';
 import logo from '../assets/images/logo2KINKON.png'
@@ -12,7 +13,7 @@ const NavBar = () => {
     <nav className='bg-black py-4 w-full'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
-          <img src={logo} alt="Icono Gorila Color" />
+        <Link to="/"><img src={logo} alt="Icono Gorila Color" /></Link>
         </div>
         <div className='flex justify-center items-center flex-grow'>
           <button className='p-3 h-[7%] w-[7%] border-none bg-transparent'>
