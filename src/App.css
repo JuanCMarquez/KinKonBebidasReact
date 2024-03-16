@@ -2,11 +2,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    /* Cambia la fuente según tus preferencias */
     background-image: url('./assets/images/wallpaper1.jpg');
-    /* Reemplaza con la ruta correcta a tu imagen */
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    /* Otros estilos globales que desees aplicar a toda la aplicación */
+
 }

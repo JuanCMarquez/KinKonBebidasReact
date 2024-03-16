@@ -759,7 +759,6 @@ video {
 
 .bg-image {
   background-image: url('/assets/images/wallpaperneonjungle.jpg');
-  /* Otros estilos... */
 }
 
 .hover\:text-green-400:hover {

@@ -3,6 +3,5 @@
 @tailwind utilities;
 
 .bg-image {
-    background-image: url('/assets/images/wallpaperneonjungle.jpg');
-    /* Otros estilos... */
-  }
+  background-image: url('/assets/images/wallpaperneonjungle.jpg');
+}

@@ -1,8 +1,11 @@
-export const fakeApiCall = (mock) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
+export const fakeApiCall = (mock, categoryId) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (!categoryId) {
         resolve(mock)
       }
-        , 1000)
-    })
-  }
+      resolve(mock.productos.filter((prod) => prod.categoria.toString() === categoryId))
+    }
+      , 1000)
+  })
+}
