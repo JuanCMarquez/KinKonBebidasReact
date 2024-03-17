@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../index.css'
+import '../index.css';
 import CartWidget from './CartWidget';
-import logo from '../assets/images/logo2KINKON.png'
-import lupa from '../assets/images/lupablanca2.png'
+import logo from '../assets/images/logo2KINKON.png';
+import lupa from '../assets/images/lupablanca2.png';
 
 const NavBar = () => {
   const [showProductos, setShowProductos] = useState(false);
@@ -13,7 +13,9 @@ const NavBar = () => {
     <nav className='bg-black py-4 w-full'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
-        <Link to="/"><img src={logo} alt="Icono Gorila Color" /></Link>
+          <Link to="/">
+            <img src={logo} alt="Icono Gorila Color" />
+          </Link>
         </div>
         <div className='flex justify-center items-center flex-grow'>
           <button className='p-3 h-[7%] w-[7%] border-none bg-transparent'>
@@ -30,31 +32,23 @@ const NavBar = () => {
               <button className='text-white text-xl hover:text-green-400' href="" onClick={() => setShowProductos(!showProductos)}> Productos</button>
               {showProductos && (
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
-
                   <li className='text-black pb-1'>
-                    <button>
+                    <Link to="/category/1">
                       <span className='hover:underline'>Cerveza</span>
-                    </button>
+                    </Link>
                   </li>
                   <li className='text-black p-1'>
-                    <button>
+                    <Link to="/category/2">
                       <span className='hover:underline'>Vodka</span>
-                    </button>
+                    </Link>
                   </li>
                   <li className='text-black p-1'>
-                    <button>
+                    <Link to="/category/3">
                       <span className='hover:underline'>Gin</span>
-                    </button>
+                    </Link>
                   </li>
-                  <li className='text-black p-1'>
-                    <button>
-                      <span className='hover:underline'>Whisky</span>
-                    </button>
-                  </li>
-
                 </ul>
-              )
-              }
+              )}
             </li>
           </ul>
         </div>
@@ -65,20 +59,16 @@ const NavBar = () => {
               <button className='text-white text-xl  hover:text-green-400' href="" onClick={() => setShowContactos(!showContactos)}> Contacto</button>
               {showContactos && (
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
-
                   <li className='text-black'>WhatsApp: 351621723</li>
-
                 </ul>
-              )
-              }
+              )}
             </li>
           </ul>
         </div>
-      
+
         <div>
           <CartWidget />
         </div>
-       
       </div>
     </nav>
   );
