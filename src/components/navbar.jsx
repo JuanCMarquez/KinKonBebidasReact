@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../index.css';
 import CartWidget from './CartWidget';
+import categories from '../utils/MocksAsync.json';
+import { fakeApiCall } from '../utils/fakeApiCall.js';
 import logo from '../assets/images/logo2KINKON.png';
 import lupa from '../assets/images/lupablanca2.png';
 
 const NavBar = () => {
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fakeApiCall(categories).then(() => {
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <h1 className='text-white text-xl flex items-center justify-center'>Cargando...</h1>;
 
   return (
     <nav className='bg-black py-4 w-full'>
@@ -29,7 +39,7 @@ const NavBar = () => {
         <div className='ml-30 flex items-center justify-end p-6'>
           <ul className='flex space-x-4 justify-end'>
             <li>
-              <button className='text-white text-xl hover:text-green-400' href="" onClick={() => setShowProductos(!showProductos)}> Productos</button>
+              <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
               {showProductos && (
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
                   <li className='text-black pb-1'>
@@ -56,7 +66,7 @@ const NavBar = () => {
         <div className='ml-30 flex items-center justify-end p-6'>
           <ul className='flex space-x-4 justify-end'>
             <li>
-              <button className='text-white text-xl  hover:text-green-400' href="" onClick={() => setShowContactos(!showContactos)}> Contacto</button>
+              <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
               {showContactos && (
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
                   <li className='text-black'>WhatsApp: 351621723</li>
