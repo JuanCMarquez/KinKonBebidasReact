@@ -1,4 +1,3 @@
-/*Permite agregar o sacar productos desde los contenedores principales al carrito*/
 import React, { useState } from "react";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -19,16 +18,22 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    handleAdd();
+  };
+
   return (
-    <div>
-      <button onClick={() => handleCountChange(-1)} disabled={count <= 0}>
-        -
-      </button>
-      <span>{count}</span>
-      <button onClick={() => handleCountChange(+1)} disabled={count >= stock}>
-        +
-      </button>
-      <button onClick={handleAdd} disabled={count <= 0}>
+    <div className="text-center">
+      <div className="d-inline-flex align-items-center justify-content-center mb-4" style={{ marginTop: "20px" }}>
+        <button onClick={() => handleCountChange(-1)} className="btn btn-light me-2" disabled={count <= 0}>
+          -
+        </button>
+        <span>{count}</span>
+        <button onClick={() => handleCountChange(+1)} className="btn btn-light ms-2" disabled={count >= stock}>
+          +
+        </button>
+      </div>
+      <button onClick={handleAddToCart} className="btn btn-dark btn-lg" disabled={count <= 0}>
         Agregar al carrito
       </button>
     </div>

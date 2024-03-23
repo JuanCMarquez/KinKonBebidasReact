@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import categories from '../utils/MocksAsync.json';
 import { fakeApiCall } from '../utils/fakeApiCall.js';
+import ItemCount from '../components/ItemCount.jsx';
 
 const ItemListContainer = () => {
   const { id } = useParams();
@@ -9,9 +11,9 @@ const ItemListContainer = () => {
   const [productsPorCategoria, setProductsPorCategoria] = useState([]);
 
   useEffect(() => {
-    setLoading(true); // Establece el estado de carga como verdadero al iniciar la llamada a la API
+    setLoading(true);
     fakeApiCall(categories).then(() => {
-      setLoading(false); // Establece el estado de carga como falso cuando la llamada a la API se completa
+      setLoading(false);
       if (!id) {
         setProductsPorCategoria(categories.productos);
       } else {
@@ -39,17 +41,32 @@ const ItemListContainer = () => {
 
   const categoryName = getCategoryName(id);
 
+  const handleAddToCart = (productId, quantity) => {
+    console.log(`Agregando ${quantity} unidades del producto ${productId} al carrito`);
+  };
+
   return (
     <>
-      <div>
-        <h1 className='text-white text-xl flex items-center justify-center p-4 text-shadow-md'>{categoryName}</h1>
-        {
-          productsPorCategoria.map((producto) => (
-            <Link key={producto.id} to={`/item/${producto.id}`}>
-              <h2 className='text-white text-xl  hover:text-red-600 flex items-center justify-center'>{producto.nombre}</h2>
-            </Link>
-          ))
-        }
+      <div className="container">
+        <h1 className='text-white text-2xl flex items-center justify-center p-4 text-shadow-md'>
+          {categoryName ? categoryName : "Bebidas de la selva"}
+        </h1>
+        <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+          {
+            productsPorCategoria.map((producto) => (
+              <div key={producto.id} className="col">
+                <div className="card">
+                  <div className="card-body d-flex flex-column align-items-center">
+                    <Link to={`/item/${producto.id}`} className="text-decoration-none">
+                      <h5 className="card-title text-center text-2xl text-black fw-bold hover-red mb-4">{producto.nombre}</h5>
+                    </Link>
+                    <ItemCount stock={producto.stock} initial={0} onAdd={(quantity) => handleAddToCart(producto.id, quantity)} />
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </>
   );

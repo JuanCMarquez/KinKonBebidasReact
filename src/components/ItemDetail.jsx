@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from "react";
-import ItemCount from "./ItemCount";
+import React from 'react'; // Asegúrate de importar React
+import ItemCount from './ItemCount';
 
-export const ItemDetail = ({ item }) => {
+const ItemDetail = ({ item }) => {
+  const handleAdd = (count) => {
+    console.log(`Agregados ${count} productos al carrito`);
+  };
 
-
-  const handleAdd = () => {
-    console.log('agregar al carrito')
-  }
-
-  return (<>
-    <div className="mx-auto my-auto">
-      <div className="text-white text-xl text-center flex items-center justify-center text-shadow-md p-3">
-        {item.nombre}
+  return (
+    <>
+      <div className="mx-auto my-auto">
+        <div className="card text-center" style={{ width: '18rem' }}>
+          <div className="card-body">
+            <h3 className="card-title fw-bold">{item.nombre}</h3>
+            <p className="card-text">Precio: {item.precio}</p>
+            <p className="card-text">Descripción: {item.descripcion}</p>
+            <div className="d-flex justify-content-between align-items-center">
+              <ItemCount stock={item.stock} initial={0} onAdd={handleAdd} />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="text-white text-xl text-center flex items-center justify-center text-shadow-md p-2">
-        {item.precio}
-      </div>
-      <div className="text-white text-xl text-center flex items-center justify-center text-shadow-md p-2"> 
-        {item.descripcion}
-      </div>
-      <div className="text-white text-xl text-center flex items-center justify-center text-shadow-md p-2">
-        <button><ItemCount stock={item.stock} initial={0} onAdd={handleAdd} /></button>
-      </div>
-    </div>
-  </>);
-
+    </>
+  );
 }
 
-//Detalle de producto. Tarjeta.
+export default ItemDetail;

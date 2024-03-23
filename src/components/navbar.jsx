@@ -17,7 +17,6 @@ const NavBar = () => {
     });
   }, []);
 
-  if (loading) return <h1 className='text-white text-xl flex items-center justify-center'>Cargando...</h1>;
 
   return (
     <nav className='bg-black py-4 w-full'>
