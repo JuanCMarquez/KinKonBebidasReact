@@ -15,7 +15,7 @@ const Item = ({ producto }) => {
             <h2>{producto.nombre}</h2>
             <p>{producto.descripcion}</p>
             <p>Precio: ${producto.precio}</p>
-            {/* Puedes agregar más detalles del producto aquí, como imágenes, opciones de compra, etc. */}
+            {}
         </div>
     );
 };
