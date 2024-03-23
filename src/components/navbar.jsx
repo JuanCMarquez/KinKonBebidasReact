@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
-import categories from '../utils/MocksAsync.json';
-import { fakeApiCall } from '../utils/fakeApiCall.js';
 import logo from '../assets/images/logo2KINKON.png';
 import lupa from '../assets/images/lupablanca2.png';
 
-const NavBar = () => {
+const NavBar = ({ loading }) => {
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const productosRef = useRef(null);
+  const contactosRef = useRef(null);
 
   useEffect(() => {
-    fakeApiCall(categories).then(() => {
-      setLoading(false);
-    });
+    const handleClickOutside = (event) => {
+      if (productosRef.current && !productosRef.current.contains(event.target)) {
+        setShowProductos(false);
+      }
+      if (contactosRef.current && !contactosRef.current.contains(event.target)) {
+        setShowContactos(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
-
   return (
-    <nav className='bg-black py-4 w-full'>
+    <nav className='bg-black py-4 w-full fixed top-0 z-50'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
           <Link to="/">
@@ -36,10 +45,11 @@ const NavBar = () => {
         </div>
 
         <div className='ml-30 flex items-center justify-end p-6'>
-          <ul className='flex space-x-4 justify-end'>
+          <ul className='flex space-x-4 justify-end' ref={productosRef}>
             <li>
               <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
-              {showProductos && (
+              {loading && <div className="text-white mt-40">Cargando...</div>}
+              {!loading && showProductos && (
                 <ul className='absolute bg-white border border-black text-xl w-[9%] p-3 rounded-xl'>
                   <li className='text-black pb-1'>
                     <Link to="/category/1">
@@ -63,7 +73,7 @@ const NavBar = () => {
         </div>
 
         <div className='ml-30 flex items-center justify-end p-6'>
-          <ul className='flex space-x-4 justify-end'>
+          <ul className='flex space-x-4 justify-end' ref={contactosRef}>
             <li>
               <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
               {showContactos && (

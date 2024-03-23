@@ -10,6 +10,12 @@ const ItemListContainer = () => {
   const [loading, setLoading] = useState(true);
   const [productsPorCategoria, setProductsPorCategoria] = useState([]);
 
+  const getProductosByCategory = (categoryId) => {
+    if (categoryId) {
+      return categories.productos.filter((product) => product.categoria === parseInt(categoryId))
+    }
+  }
+
   useEffect(() => {
     setLoading(true);
     fakeApiCall(categories).then(() => {
@@ -22,7 +28,7 @@ const ItemListContainer = () => {
     });
   }, [id]);
 
-  if (loading) return <h1 className='text-white text-xl flex items-center justify-center'>Cargando...</h1>;
+  if (loading) return <h1 className='text-white text-xl flex items-center justify-center mt-40'>Cargando...</h1>;
 
   const getCategoryById = (categoryId) => {
     return categories.categorias.find(cat => cat.id.toString() === categoryId);
@@ -33,12 +39,6 @@ const ItemListContainer = () => {
     return category ? category.nombre : '';
   }
 
-  const getProductosByCategory = (categoryId) => {
-    if (categoryId) {
-      return categories.productos.filter((product) => product.categoria === parseInt(categoryId))
-    }
-  }
-
   const categoryName = getCategoryName(id);
 
   const handleAddToCart = (productId, quantity) => {
@@ -47,7 +47,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ marginTop: '136px' }}>
         <h1 className='text-white text-2xl flex items-center justify-center p-4 text-shadow-md'>
           {categoryName ? categoryName : "Bebidas de la selva"}
         </h1>

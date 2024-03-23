@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
-
 const Item = ({ producto }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);
-        setLoading(false);
+        // Simulación de carga de imagen (podrías utilizar un evento onLoad del elemento <img>)
+        const image = new Image();
+        image.onload = () => {
+            setLoading(false);
+        };
+        image.src = producto.imagen;
     }, [producto]);
 
     if (loading) return <h1 className='text-white text-xl flex items-center justify-center'>Cargando...</h1>;
@@ -15,7 +18,7 @@ const Item = ({ producto }) => {
             <h2>{producto.nombre}</h2>
             <p>{producto.descripcion}</p>
             <p>Precio: ${producto.precio}</p>
-            {}
+            <img src={producto.imagen} alt={producto.nombre} />
         </div>
     );
 };
