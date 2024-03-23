@@ -27,6 +27,19 @@ const NavBar = ({ loading }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowProductos(false);
+      setShowContactos(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <nav className='bg-black py-4 w-full fixed top-0 z-50'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
