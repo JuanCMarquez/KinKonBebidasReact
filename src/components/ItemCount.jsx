@@ -29,18 +29,22 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   return (
     <div className="text-center">
-      <div className="d-inline-flex align-items-center justify-content-center mb-4" style={{ marginTop: "20px" }}>
-        <button onClick={() => handleCountChange(-1)} className="btn btn-light me-2" disabled={count <= 0}>
-          -
-        </button>
-        <span>{count}</span>
-        <button onClick={() => handleCountChange(+1)} className="btn btn-light ms-2" disabled={count >= stock}>
-          +
-        </button>
+      <div className="mb-4">
+        <div className="d-flex align-items-center justify-content-center">
+          <button onClick={() => handleCountChange(-1)} className="btn btn-light me-2" disabled={count <= 0}>
+            -
+          </button>
+          <span>{count}</span>
+          <button onClick={() => handleCountChange(+1)} className="btn btn-light ms-2" disabled={count >= stock}>
+            +
+          </button>
+        </div>
+        <div className="d-flex align-items-center justify-content-center">
+          <button onClick={handleAddToCart} className="btn btn-dark btn-lg" disabled={count <= 0}>
+            Agregar al carrito
+          </button>
+        </div>
       </div>
-      <button onClick={handleAddToCart} className="btn btn-dark btn-lg" disabled={count <= 0}>
-        Agregar al carrito
-      </button>
     </div>
   );
 };
