@@ -6,7 +6,7 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import './index.css';
 import './App.css';
 import { CartProvider } from './context/CartContext';
-/*import CartPage from './components/Cart';*/
+import Cart from './components/Cart';
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
               <Route path="/" element={<ItemListContainer />} />
               <Route path="/category/:id" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
-              
+              <Route path="/cart" element={<Cart />} />       
             </Routes>
           </div>
         </div>

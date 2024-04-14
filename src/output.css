@@ -620,6 +620,18 @@ video {
   margin-top: 10rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
+}
+
 .flex {
   display: flex;
 }
@@ -779,6 +791,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .text-black {
