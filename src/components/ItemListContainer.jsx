@@ -55,7 +55,10 @@ const ItemListContainer = () => {
           {
             productsPorCategoria.map((producto) => (
               <div key={producto.id} className="col">
-                <div className="card">
+                <div className="card card-body d-flex flex-column align-items-center">
+                  <Link to={`/item/${producto.id}`} className="text-decoration-none align-items-center">
+                    <img src={producto.imagen} className="card-img-top card-img-center" alt={producto.nombre} style={{ width: "70%", height: "70%", objectFit: "ficed " }} />
+                  </Link>
                   <div className="card-body d-flex flex-column align-items-center">
                     <Link to={`/item/${producto.id}`} className="text-decoration-none">
                       <h5 className="card-title text-center text-2xl text-black fw-bold hover-red mb-4">{producto.nombre}</h5>

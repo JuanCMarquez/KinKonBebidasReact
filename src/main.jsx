@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client'; // Cambio aquí
+import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { initializeApp } from "firebase/app";
@@ -14,12 +14,22 @@ const firebaseConfig = {
   appId: "1:636698781803:web:996ca806ed2578a9bc292e"
 };
 
-const app = initializeApp(firebaseConfig);
+
+function FirebaseInitializer({ children }) {
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
+    return () => {
+    };
+  }, []);
+  return children;
+}
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <App />
+    <FirebaseInitializer>
+      <App />
+    </FirebaseInitializer>
   </React.StrictMode>
 );

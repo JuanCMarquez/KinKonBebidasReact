@@ -18,8 +18,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
+  const handleReset = () => {
+    setCount(0);
+  };
+
   const handleAddToCart = () => {
     handleAdd();
+    handleReset(); // Llamar a la función handleReset después de agregar al carrito
   };
 
   return (
