@@ -15,25 +15,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID
 };
 
-export const app = initializeApp (firebaseConfig);
-export const db = getFirestore ();
-
-
-function FirebaseInitializer({ children }) {
-  useEffect(() => {
-    const app = initializeApp(firebaseConfig);
-    return () => {
-    };
-  }, []);
-  return children;
-}
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore();
 
 const root = createRoot(document.getElementById('root'));
 
+console.log(firebaseConfig)
+
 root.render(
   <React.StrictMode>
-    <FirebaseInitializer>
-      <App />
-    </FirebaseInitializer>
+    <App />
   </React.StrictMode>
 );
