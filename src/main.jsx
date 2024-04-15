@@ -4,15 +4,19 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAvp5-Bv1EEPXtRw5X6WUy2N6vjqrndeWQ",
-  authDomain: "kinkon-bebidas.firebaseapp.com",
-  projectId: "kinkon-bebidas",
-  storageBucket: "kinkon-bebidas.appspot.com",
-  messagingSenderId: "636698781803",
-  appId: "1:636698781803:web:996ca806ed2578a9bc292e"
+  apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID
 };
+
+export const app = initializeApp (firebaseConfig);
+export const db = getFirestore ();
 
 
 function FirebaseInitializer({ children }) {

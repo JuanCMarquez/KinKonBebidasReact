@@ -18,6 +18,8 @@ const ItemDetail = ({ item }) => {
     setAddedToCart(true);
   };
 
+  /*funcion on had funcion on remove*/
+
   return (
     <div className="mx-auto my-auto">
       <div className="card text-center" style={{ width: '25rem', marginTop: '136px' }}>

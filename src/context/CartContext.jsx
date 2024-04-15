@@ -6,7 +6,8 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addItem = (item) => {
-    setCart(prevCart => [...prevCart, item]);
+    console.log (item)
+    setCart([...cart, item]);
   };
 
   const removeItem = (itemId) => {
@@ -16,6 +17,12 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => {
     setCart([]);
   };
+
+  /*const isInCart = (id) => {
+    return cart.some((itemCart) => itemCart.item.id === id)
+  }*/
+
+  //cart.map
 
   return (
     <CartContext.Provider value={{ cart, addItem, removeItem, clearCart }}>

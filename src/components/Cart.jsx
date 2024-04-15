@@ -4,6 +4,7 @@ import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
     const { cart, removeItem, clearCart } = useContext(CartContext);
+    console.log (cart)
 
     // Calcula el total de dinero
     const totalAmount = cart.reduce((total, item) => {
@@ -24,11 +25,10 @@ const Cart = () => {
             <h2 className="text-xl font-semibold mb-4">Carrito de Compras</h2>
             <ul className="list-group">
                 {cart.map(item => {
-                    console.log('Precio:', item.price);
-                    console.log('Cantidad:', item.quantity);
+                    console.log (item);
                     return (
                         <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{item.nombre} - Cantidad: {item.quantity} - Precio unitario: ${item.price}</span>
+                            <span>{item.nombre} - Cantidad: {item.cantidad} - Precio unitario: ${item.precio}</span>
                             <button className="btn btn-danger" onClick={() => removeItem(item.id)}>X</button>
                         </li>
                     );
