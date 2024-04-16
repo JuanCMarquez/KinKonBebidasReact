@@ -18,7 +18,6 @@ const ItemDetail = ({ item }) => {
     setAddedToCart(true);
   };
 
-  /*funcion on had funcion on remove*/
 
   return (
     <div className="mx-auto my-auto mt-3">

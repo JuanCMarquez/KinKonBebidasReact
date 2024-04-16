@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fakeApiCallById } from '../utils/fakeApiCall';
-import products from '../utils/MocksAsync.json'; // Importa products
+import products from '../utils/MocksAsync.json'; 
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 
