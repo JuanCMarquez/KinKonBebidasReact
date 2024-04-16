@@ -4,15 +4,11 @@ import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
     const { cart, removeItem, clearCart } = useContext(CartContext);
-    console.log (cart)
 
-    // Calcula el total de dinero
+
     const totalAmount = cart.reduce((total, item) => {
-        // Convierte el precio y la cantidad a números decimales
-        const price = parseFloat(item.price) || 0;
-        const quantity = parseFloat(item.quantity) || 0;
-
-        // Realiza el cálculo solo si el precio y la cantidad son números válidos
+        const price = parseFloat(item.precio) || 0;
+        const quantity = parseFloat(item.cantidad) || 0;
         if (!isNaN(price) && !isNaN(quantity)) {
             return total + (price * quantity);
         } else {
@@ -25,7 +21,6 @@ const Cart = () => {
             <h2 className="text-xl font-semibold mb-4">Carrito de Compras</h2>
             <ul className="list-group">
                 {cart.map(item => {
-                    console.log (item);
                     return (
                         <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
                             <span>{item.nombre} - Cantidad: {item.cantidad} - Precio unitario: ${item.precio}</span>
@@ -36,7 +31,11 @@ const Cart = () => {
             </ul>
             <p className="mt-4">Total: ${totalAmount}</p>
             <div className="mt-4">
-                <Link to="/checkout" className="btn btn-primary me-2">Finalizar compra</Link>
+                {cart.length > 0 ? (
+                    <Link to="/checkout" className="btn btn-primary me-2">Finalizar compra</Link>
+                ) : (
+                    <button className="btn btn-primary me-2" disabled>Finalizar compra</button>
+                )}
                 <button className="btn btn-secondary" onClick={() => clearCart()}>Cancelar compra</button>
             </div>
         </div>

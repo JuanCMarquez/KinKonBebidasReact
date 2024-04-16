@@ -7,6 +7,7 @@ import './index.css';
 import './App.css';
 import { CartProvider } from './context/CartContext';
 import Cart from './components/Cart';
+import CheckoutForm from './components/Checkout';
 
 const App = () => {
   return (
@@ -19,7 +20,9 @@ const App = () => {
               <Route path="/" element={<ItemListContainer />} />
               <Route path="/category/:id" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
-              <Route path="/cart" element={<Cart />} />       
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<CheckoutForm cartItems={Cart} />} />
+              <Route path="/checkout" element={<CheckoutForm />} />
             </Routes>
           </div>
         </div>
