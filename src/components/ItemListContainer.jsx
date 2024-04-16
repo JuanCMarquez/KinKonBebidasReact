@@ -47,16 +47,16 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div className="container" style={{ marginTop: '136px' }}>
-        <h1 className='text-white text-2xl flex items-center justify-center p-4 text-shadow-md'>
+      <div className="container" style={{ marginTop: '160px', marginBottom: '90px' }}>
+        <h1 className='text-black text-3xl flex items-center justify-center p-4 text-shadow-md bg-white rounded-full font-bold w-full font-sans border-3 border-black' style={{ marginTop: '220 px', marginBottom: '30px' }}>
           {categoryName ? categoryName : "Bebidas de la selva"}
         </h1>
         <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
           {
             productsPorCategoria.map((producto) => (
               <div key={producto.id} className="col">
-                <div className="card card-body d-flex flex-column align-items-center">
-                  <img src={producto.imagen} className="card-img-top card-img-center" alt={producto.nombre} style={{ width: "70%", height: "70%", objectFit: "ficed " }} />
+                <div className="card card-body rounded-lg d-flex flex-column align-items-center w-full h-full border-3 border-black">
+                  <img src={producto.imagen} className="card-img-top card-img-center" alt={producto.nombre} style={{ width: "60%", height: "60%", objectFit: "fixed " }} />
                   <div className="card-body d-flex flex-column align-items-center">
                     <Link to={`/item/${producto.id}`} className="text-decoration-none">
                       <h5 className="card-title text-center text-2xl text-black fw-bold hover-red mb-4">{producto.nombre}</h5>
