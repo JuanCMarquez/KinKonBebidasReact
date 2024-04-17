@@ -48,7 +48,7 @@ const Navbar = ({ loading }) => {
             <img src={logo} alt="Icono Gorila Color" className="h-auto w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56" />
           </Link>
         </div>
-        <div className='flex justify-center items-center flex-grow'>
+        <div className='hidden md:flex justify-center items-center flex-grow'>
           <button className='p-3 h-auto w-auto border-none bg-transparent'>
             <img src={lupa} alt="lupaNav" className="h-auto w-6 sm:w-8 md:w-10 lg:w-12 xl:w-14" />
           </button>
@@ -81,7 +81,7 @@ const Navbar = ({ loading }) => {
           )}
         </div>
 
-        <div className='ml-4 flex items-center justify-end p-7 relative'>
+        <div className='ml-4 flex items-center justify-end p-6 relative'>
           <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
           {showContactos && (
             <ul ref={contactosRef} className='absolute bg-white border border-black text-xl p-3 rounded-xl right-0 top-[60px]'>
