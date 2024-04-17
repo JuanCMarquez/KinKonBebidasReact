@@ -83,7 +83,7 @@ function CheckoutForm() {
     };
 
     return (
-        <div className="mt-[200px] mb-[20px] w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div className="mt-[180px] mb-[20px] w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-6 text-center">Checkout</h2>
             {orderId && (<div className="mb-4 text-center">
                 <p className="text-green-500">¡Orden generada! Tu ID de orden es: {orderId}</p>

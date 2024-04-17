@@ -768,6 +768,10 @@ video {
   width: 100%;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
@@ -1015,6 +1019,10 @@ video {
   .sm\:w-8 {
     width: 2rem;
   }
+
+  .sm\:w-32 {
+    width: 8rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1024,6 +1032,10 @@ video {
 
   .md\:w-12 {
     width: 3rem;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
   }
 
   .md\:text-xl {
@@ -1045,6 +1057,10 @@ video {
     width: 3.5rem;
   }
 
+  .lg\:w-48 {
+    width: 12rem;
+  }
+
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -1058,5 +1074,9 @@ video {
 
   .xl\:w-16 {
     width: 4rem;
+  }
+
+  .xl\:w-56 {
+    width: 14rem;
   }
 }

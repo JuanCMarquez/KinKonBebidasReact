@@ -26,7 +26,7 @@ const Cart = () => {
     }, 0);
 
     return (
-        <div className="card card-body rounded-lg flex flex-col items-center justify-center border-1 border-black mx-auto" style={{ marginTop: '200px', marginBottom: '90px', width: '60%' }}>
+        <div className="card card-body rounded-lg flex flex-col items-center justify-center border-1 border-black mx-auto" style={{ marginTop: '190px', marginBottom: '90px', width: '60%' }}>
             <h2 className="text-xl p-3">Carrito de compras</h2>
             <ul className="list-group">
                 {cart.map(item => {

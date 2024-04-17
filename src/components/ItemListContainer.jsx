@@ -47,7 +47,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div className="container" style={{ marginTop: '200px', marginBottom: '90px' }}>
+      <div className="container" style={{ marginTop: '190px', marginBottom: '90px' }}>
         <h1 className='text-black text-3xl flex items-center justify-center p-4 text-shadow-md bg-white rounded-full font-bold w-full font-sans border-3 border-black' style={{ marginTop: '220 px', marginBottom: '30px' }}>
           {categoryName ? categoryName : "Bebidas de la selva"}
         </h1>
