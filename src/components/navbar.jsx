@@ -4,7 +4,7 @@ import CartWidget from './CartWidget';
 import logo from '../assets/images/logo2KINKON.png';
 import lupa from '../assets/images/lupablanca2.png';
 
-const Navbar = ({ loading }) => {
+const NavBar = ({ loading }) => {
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
   const productosRef = useRef(null);
@@ -108,4 +108,4 @@ const Navbar = ({ loading }) => {
   );
 };
 
-export default Navbar;
+export default NavBar;
