@@ -27,12 +27,13 @@ const Cart = () => {
 
     return (
         <div className="card card-body rounded-lg flex flex-col items-center justify-center border-1 border-black mx-auto" style={{ marginTop: '160px', marginBottom: '90px', width: '60%' }}>
+            <h2 className="text-xl p-3">Carrito de compras</h2>
             <ul className="list-group">
                 {cart.map(item => {
                     return (
                         <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center text-black">
                             <span>{item.nombre} - Cantidad: {item.cantidad} - Precio unitario: ${item.precio}</span>
-                            <button className="btn btn-danger" onClick={() => removeItem(item.id)}>X</button>
+                            <button className="btn btn-danger ml-3" onClick={() => removeItem(item.id)}>X</button>
                         </li>
                     );
                 })}
@@ -46,14 +47,16 @@ const Cart = () => {
                     </div>
                 ) : (
                     <>
-                        {cart.length > 0 ? (
-                            <Link to="/checkout" className="btn btn-primary me-2">Finalizar compra</Link>
-                        ) : (
-                            <button className="btn btn-primary me-2" disabled>Finalizar compra</button>
-                        )}
-                        <Link to="/">
-                            <button className="btn btn-secondary" onClick={handleCancelarCompra}>Cancelar compra</button>
-                        </Link>
+                        <div className='p-3'>
+                            {cart.length > 0 ? (
+                                <Link to="/checkout" className="btn btn-primary me-2">Finalizar compra</Link>
+                            ) : (
+                                <button className="btn btn-primary me-2" disabled>Finalizar compra</button>
+                            )}
+                            <Link to="/">
+                                <button className="btn btn-secondary" onClick={handleCancelarCompra}>Cancelar compra</button>
+                            </Link>
+                        </div>
                     </>
                 )}
             </div>
