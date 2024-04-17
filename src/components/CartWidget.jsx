@@ -16,8 +16,8 @@ const CartWidget = () => {
   console.log('Total de items en el carrito:', totalItems);
 
   return (
-    <div className='flex flex-col items-center'>
-      <span className='text-white'>{isNaN(totalItems) ? 0 : totalItems}</span>
+    <div className='flex flex-col items-center p-1'>
+      <span className='text-white text-lg md:text-xl lg:text-xl'>{isNaN(totalItems) ? 0 : totalItems}</span>
       <img className='flex w-[70px] p-0' src={iconoCarrito} alt="iconocarrito" />
     </div>
   );
