@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import categories from '../utils/MocksAsync.json';
 import { fakeApiCall } from '../utils/fakeApiCall.js';
 
+
 const ItemListContainer = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -27,7 +28,7 @@ const ItemListContainer = () => {
     });
   }, [id]);
 
-  if (loading) return <h1 className='text-white text-xl flex items-center justify-center mt-40'>Cargando...</h1>;
+  if (loading) return <h1 className='text-white text-xl flex items-center justify-center mt-60'>Cargando...</h1>;
 
   const getCategoryById = (categoryId) => {
     return categories.categorias.find(cat => cat.id.toString() === categoryId);
@@ -46,7 +47,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div className="container" style={{ marginTop: '160px', marginBottom: '90px' }}>
+      <div className="container" style={{ marginTop: '200px', marginBottom: '90px' }}>
         <h1 className='text-black text-3xl flex items-center justify-center p-4 text-shadow-md bg-white rounded-full font-bold w-full font-sans border-3 border-black' style={{ marginTop: '220 px', marginBottom: '30px' }}>
           {categoryName ? categoryName : "Bebidas de la selva"}
         </h1>
