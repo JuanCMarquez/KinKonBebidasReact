@@ -34,9 +34,7 @@ function CheckoutForm() {
                 showConfirmButton: false
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // No hagas nada si el usuario hace clic en "OK"
                 } else {
-                    // Redirige al usuario a la página principal si hace clic en "Agregar productos"
                     window.location.href = '/';
                 }
             });

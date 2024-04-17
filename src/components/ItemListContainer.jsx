@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import categories from '../utils/MocksAsync.json';
 import { fakeApiCall } from '../utils/fakeApiCall.js';
-import ItemCount from '../components/ItemCount.jsx';
 
 const ItemListContainer = () => {
   const { id } = useParams();

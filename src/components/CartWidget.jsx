@@ -3,15 +3,14 @@ import iconoCarrito from '../assets/images/iconocarrito.png';
 import { CartContext } from '../context/CartContext';
 
 const CartWidget = () => {
-  // Accedemos al contexto del carrito usando useContext
+
   const { cart } = useContext(CartContext);
 
   console.log('Contenido del carrito:', cart);
 
-  // Calculamos el total de elementos en el carrito usando reduce
   const totalItems = cart.reduce((total, item) => {
-    console.log('Cantidad del ítem:', item.cantidad); // Usamos 'cantidad' en lugar de 'quantity'
-    return total + parseInt(item.cantidad || 0); // Usamos 'cantidad' en lugar de 'quantity'
+    console.log('Cantidad del ítem:', item.cantidad);
+    return total + parseInt(item.cantidad || 0);
   }, 0);
 
   console.log('Total de items en el carrito:', totalItems);

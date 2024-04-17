@@ -3,7 +3,6 @@ const Item = ({ producto }) => {
 
     useEffect(() => {
         setLoading(true);
-        // Simulación de carga de imagen (podrías utilizar un evento onLoad del elemento <img>)
         const image = new Image();
         image.onload = () => {
             setLoading(false);
