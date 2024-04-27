@@ -1,77 +1,71 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import categories from '../utils/MocksAsync.json';
-import { fakeApiCall } from '../utils/fakeApiCall.js';
-
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../main'; // Asegúrate de importar tu instancia de Firestore desde tu archivo main.jsx
+import '../components/ItemListContainer.css'
 
 const ItemListContainer = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [productsPorCategoria, setProductsPorCategoria] = useState([]);
-
-  const getProductosByCategory = (categoryId) => {
-    if (categoryId) {
-      return categories.productos.filter((product) => product.categoria === parseInt(categoryId))
-    }
-  }
+  const [categoriaNombre, setCategoriaNombre] = useState('');
 
   useEffect(() => {
-    setLoading(true);
-    fakeApiCall(categories).then(() => {
-      setLoading(false);
-      if (!id) {
-        setProductsPorCategoria(categories.productos);
+    const fetchProductos = async () => {
+      setLoading(true);
+      let productos = [];
+
+      if (id) {
+        // Obtener el nombre de la categoría
+        const categoriaDoc = await getDocs(collection(db, 'categorias'));
+        const categoria = categoriaDoc.docs.find(doc => doc.id === id);
+        if (categoria) {
+          setCategoriaNombre(categoria.data().nombre);
+        }
+
+        // Obtener los productos de la categoría seleccionada
+        const q = query(collection(db, 'productos'), where('categoriaId', '==', parseInt(id)));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          productos.push({ id: doc.id, ...doc.data() });
+        });
       } else {
-        setProductsPorCategoria(getProductosByCategory(id));
+        const querySnapshot = await getDocs(collection(db, 'productos'));
+        querySnapshot.forEach((doc) => {
+          productos.push({ id: doc.id, ...doc.data() });
+        });
       }
-    });
+
+      setProductsPorCategoria(productos);
+      setLoading(false);
+    };
+
+    fetchProductos();
   }, [id]);
 
   if (loading) return <h1 className='text-white text-xl flex items-center justify-center mt-60'>Cargando...</h1>;
 
-  const getCategoryById = (categoryId) => {
-    return categories.categorias.find(cat => cat.id.toString() === categoryId);
-  }
-
-  const getCategoryName = (categoryId) => {
-    const category = getCategoryById(categoryId);
-    return category ? category.nombre : '';
-  }
-
-  const categoryName = getCategoryName(id);
-
-  const handleAddToCart = (productId, quantity) => {
-    console.log(`Agregando ${quantity} unidades del producto ${productId} al carrito`);
-  };
-
   return (
-    <>
-      <div className="container" style={{ marginTop: '190px', marginBottom: '90px' }}>
-        <h1 className='text-black text-3xl flex items-center justify-center p-4 text-shadow-md bg-white rounded-full font-bold w-full font-sans border-3 border-black' style={{ marginTop: '220 px', marginBottom: '30px' }}>
-          {categoryName ? categoryName : "Bebidas de la selva"}
-        </h1>
-        <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-          {
-            productsPorCategoria.map((producto) => (
-              <div key={producto.id} className="col">
-                <div className="card card-body rounded-lg d-flex flex-column align-items-center w-full h-full border-3 border-black">
-                  <img src={producto.imagen} className="card-img-top card-img-center" alt={producto.nombre} style={{ width: "60%", height: "60%", objectFit: "fixed " }} />
-                  <div className="card-body d-flex flex-column align-items-center">
-                    <Link to={`/item/${producto.id}`} className="text-decoration-none">
-                      <h5 className="card-title text-center text-2xl text-black fw-bold hover-red mb-4">{producto.nombre}</h5>
-                    </Link>
-                    <Link to={`/item/${producto.id}`} className="text-decoration-none align-items-center">
-                      <button variant="primary" className="btn btn-dark btn-lg">Ver detalles</button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+    <div id="itemListContainer">
+      <h1 id="pageTitle">
+        {categoriaNombre || "Bebidas de la selva"}
+      </h1>
+      <div id="productGrid">
+        {productsPorCategoria.map((producto) => (
+          <div key={producto.id} className="card">
+            <img src={producto.imagen} className="card-img-top" alt={producto.nombre} />
+            <div className="card-body">
+              <Link to={`/item/${producto.id}`} className="text-decoration-none">
+                <h5 className="card-title">{producto.nombre}</h5>
+              </Link>
+              <Link to={`/item/${producto.id}`} className="text-decoration-none">
+                <button className="btn">Ver detalles</button>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 

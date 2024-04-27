@@ -45,7 +45,7 @@ const Navbar = ({ loading }) => {
       <div className='container mx-auto flex justify-between items-center flex-grow'>
         <div className='h-[24%] w-[24%] p-0 items-left'>
           <Link to="/">
-            <img src={logo} alt="Icono Gorila Color" className="h-auto w-auto sm:w-32 md:w-40 lg:w-48 xl:w-56 flex-grow" />
+            <img src={logo} alt="Icono Gorila Color" className="h-auto w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56 flex-grow" />
           </Link>
         </div>
         <div className='hidden lg:flex justify-center items-center flex-grow'>
