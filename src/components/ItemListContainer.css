@@ -1,5 +1,3 @@
-/* itemListContainer.css */
-
 #itemListContainer {
     display: flex;
     flex-direction: column;
@@ -41,8 +39,8 @@
 
 .card-img-top {
     width: 100%;
-    height: 100%; /* Altura fija para todas las imágenes */
-    object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+    height: 100%; 
+    object-fit: cover; 
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     padding: 40px;

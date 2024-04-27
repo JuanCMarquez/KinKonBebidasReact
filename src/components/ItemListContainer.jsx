@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../main'; // Asegúrate de importar tu instancia de Firestore desde tu archivo main.jsx
+import { db } from '../main';
 import '../components/ItemListContainer.css'
 
 const ItemListContainer = () => {
@@ -16,14 +16,12 @@ const ItemListContainer = () => {
       let productos = [];
 
       if (id) {
-        // Obtener el nombre de la categoría
         const categoriaDoc = await getDocs(collection(db, 'categorias'));
         const categoria = categoriaDoc.docs.find(doc => doc.id === id);
         if (categoria) {
           setCategoriaNombre(categoria.data().nombre);
         }
 
-        // Obtener los productos de la categoría seleccionada
         const q = query(collection(db, 'productos'), where('categoriaId', '==', parseInt(id)));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
