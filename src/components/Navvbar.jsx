@@ -37,17 +37,10 @@ const Navbar = ({ loading }) => {
       }
     };
 
-    const handleScroll = () => {
-      setShowProductos(false);
-      setShowContactos(false);
-    };
-
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('scroll', handleScroll);
+      document.removeventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -58,53 +51,44 @@ const Navbar = ({ loading }) => {
       category.nombre.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestedCategories(filteredCategories);
+    setActiveSuggestion(0); // Restablecer la sugerencia activa
   };
 
   const handleCategorySelection = (category) => {
-    setSearchTerm(category.nombre);
-    setSuggestedCategories([]);
-    navigate(`/category/${category.id}`); 
+    navigate(`/category/${category.id}`); // Redirigir a la categoría seleccionada
+    setSearchTerm(''); // Limpiar el campo de búsqueda después de la redirección
+    setSuggestedCategories([]); // Limpiar las sugerencias
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
-    if (searchTerm.trim() === '') {
-      navigate('/'); 
+    event.preventDefault();
+
+    if (suggestedCategories.length > 0) {
+      handleCategorySelection(suggestedCategories[activeSuggestion]); // Seleccionar la sugerencia activa
     } else {
-      const matchedCategory = categorias.find(
-        (category) => category.nombre.toLowerCase() === searchTerm.toLowerCase()
-      );
-      if (matchedCategory) {
-        navigate(`/category/${matchedCategory.id}`); 
-      } else {
-        navigate('/'); 
-      }
+      navigate('/'); // Redirigir a la página de inicio si no hay coincidencias
     }
+
+    setSearchTerm(''); // Limpiar el campo de búsqueda después del envío
+    setSuggestedCategories([]); // Limpiar las sugerencias
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'ArrowUp') {
-      event.preventDefault();
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Para evitar que se envíe el formulario de forma predeterminada
+      handleSubmit(event); // Ejecutar el envío del formulario
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault(); // Para evitar el desplazamiento natural del navegador
       if (suggestedCategories.length > 0) {
-        setActiveSuggestion(
-          (prev) => (prev > 0 ? prev - 1 : suggestedCategories.length - 1)
-        );
+        setActiveSuggestion((prev) => (prev > 0 ? prev - 1 : suggestedCategories.length - 1));
       }
     } else if (event.key === 'ArrowDown') {
-      event.preventDefault();
+      event.preventDefault(); // Para evitar el desplazamiento natural del navegador
       if (suggestedCategories.length > 0) {
-        setActiveSuggestion(
-          (prev < suggestedCategories.length - 1 ? prev + 1 : 0)
-        );
-      }
-    } else if (event.key === 'Enter') {
-      event.preventDefault();
-      if (suggestedCategories.length > 0) {
-        handleCategorySelection(suggestedCategories[activeSuggestion]); 
+        setActiveSuggestion((prev) => (prev < suggestedCategories.length - 1 ? prev + 1 : 0));
       }
     }
   };
-  
   return (
     <nav className='bg-black py-4 w-full fixed top-0 z-50'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>
