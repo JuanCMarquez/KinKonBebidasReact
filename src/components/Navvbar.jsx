@@ -71,8 +71,16 @@ const Navbar = ({ loading }) => {
     } else {
       const matchedCategory = categorias.find(category => category.nombre.toLowerCase() === searchTerm.toLowerCase());
       if (matchedCategory) {
+        // Redireccionar a la página de la categoría coincidente
         window.location.href = `/category/${matchedCategory.id}`;
+      } else if (suggestedCategories.length > 0 && suggestedCategories[activeSuggestion]) {
+        // Si hay sugerencias y la sugerencia activa está disponible
+        const suggestedCategory = suggestedCategories[activeSuggestion];
+        setSearchTerm(suggestedCategory.nombre);
+        // Redireccionar a la página de la sugerencia activa
+        window.location.href = `/category/${suggestedCategory.id}`;
       } else {
+        // Si no se encontró una coincidencia exacta y no hay sugerencias disponibles, redirigir a la página principal
         window.location.href = "/";
       }
     }
