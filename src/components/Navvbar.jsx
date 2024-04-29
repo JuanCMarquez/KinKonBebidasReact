@@ -7,8 +7,18 @@ import lupa from '../assets/images/lupablanca2.png';
 const Navbar = ({ loading }) => {
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestedCategories, setSuggestedCategories] = useState([]);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const productosRef = useRef(null);
   const contactosRef = useRef(null);
+
+  const categorias = [
+    { id: 1, nombre: 'Cerveza' },
+    { id: 2, nombre: 'Vodka' },
+    { id: 3, nombre: 'Gin' },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -27,18 +37,59 @@ const Navbar = ({ loading }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowProductos(false);
-      setShowContactos(false);
-    };
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+    const filteredCategories = categorias.filter(category =>
+      category.nombre.toLowerCase().includes(value.toLowerCase())
+    );
+    setSuggestedCategories(filteredCategories);
+  };
 
-    window.addEventListener('scroll', handleScroll);
+  const handleCategorySelection = (category) => {
+    setSearchTerm(category.nombre);
+    setSuggestedCategories([]);
+    window.location.href = `/category/${category.id}`;
+  };
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (searchTerm.trim() === '') {
+      window.location.href = '/'; 
+    } else {
+      const matchedCategory = categorias.find(category => category.nombre.toLowerCase() === searchTerm.toLowerCase());
+      if (matchedCategory) {
+        window.location.href = `/category/${matchedCategory.id}`;
+      } else {
+        window.location.href = "/";
+      }
+    }
+  };
+
+  const handleLupaClick = () => {
+    if (searchTerm.trim() !== '') {
+      handleSubmit(); 
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        setActiveSuggestion(prevActiveSuggestion => (prevActiveSuggestion > 0 ? prevActiveSuggestion - 1 : suggestedCategories.length - 1));
+      }
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        setActiveSuggestion(prevActiveSuggestion => (prevActiveSuggestion < suggestedCategories.length - 1 ? prevActiveSuggestion + 1 : 0));
+      }
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        handleCategorySelection(suggestedCategories[activeSuggestion]);
+      }
+    }
+  };
 
   return (
     <nav className='bg-black py-4 w-full fixed top-0 z-50'>
@@ -49,11 +100,33 @@ const Navbar = ({ loading }) => {
           </Link>
         </div>
         <div className='hidden lg:flex justify-center items-center flex-grow'>
-          <button className='p-3 h-auto w-auto border-none bg-transparent'>
+          <button className='p-3 h-auto w-auto border-none bg-transparent' onClick={handleLupaClick}>
             <img src={lupa} alt="lupaNav" className="h-auto w-6 sm:w-8 md:w-10 lg:w-12 xl:w-14" />
           </button>
-          <form className='bg-white p-3 h-full w-full rounded flex-grow justify-center items-center'>
-            <input className='bg-white p-1 h-[40%] w-full type="text"' />
+          <form className='bg-white p-3 h-full w-full rounded flex-grow justify-center items-center' onSubmit={handleSubmit}>
+            <input
+              className='bg-white p-1 h-[40%] w-full type="text"'
+              value={searchTerm}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+            />
+            {suggestedCategories.length > 0 && (
+              <ul
+                className='absolute bg-white border border-black text-xl p-2 rounded-xl max-w-[200px]'
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                {suggestedCategories.map((category, index) => (
+                  <li
+                    key={category.id}
+                    className={`text-black cursor-pointer ${isHovered && index === activeSuggestion ? 'bg-gray-200' : ''}`}
+                    onClick={() => handleCategorySelection(category)}
+                  >
+                    {category.nombre}
+                  </li>
+                ))}
+              </ul>
+            )}
           </form>
         </div>
 
@@ -61,22 +134,16 @@ const Navbar = ({ loading }) => {
           <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
           {loading && <div className="text-white mt-40">Cargando...</div>}
           {!loading && showProductos && (
-            <ul ref={productosRef} className='absolute bg-white border border-black text-xl p-3 rounded-xl right-[10px] top-[60px]'>
-              <li className='text-black pb-1'>
-                <Link to="/category/1">
-                  <span className='hover:underline'>Cerveza</span>
-                </Link>
-              </li>
-              <li className='text-black p-1'>
-                <Link to="/category/2">
-                  <span className='hover:underline'>Vodka</span>
-                </Link>
-              </li>
-              <li className='text-black p-1'>
-                <Link to="/category/3">
-                  <span className='hover:underline'>Gin</span>
-                </Link>
-              </li>
+            <ul
+              ref={productosRef}
+              className='absolute bg-white border border-black text-xl p-3 rounded-xl right-[10px] top-[60px]'
+              style={{ cursor: 'pointer' }}
+            >
+              {categorias.map(category => (
+                <li key={category.id} className='text-black pb-1'>
+                  <span className='hover:underline' onClick={() => handleCategorySelection(category)}>{category.nombre}</span>
+                </li>
+              ))}
             </ul>
           )}
         </div>

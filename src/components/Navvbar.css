@@ -1,0 +1,77 @@
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #000;
+    padding: 1rem 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para el logo */
+.logo-container {
+    grid-column: 2; /* Colocar el logo en la segunda columna */
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+  }
+  
+  .logo-img {
+    width: auto; /* El ancho se ajustará automáticamente */
+    height: auto;
+    max-width: 20%; /* Evita que la imagen se salga del contenedor */
+  }
+  
+  /* Estilos para los botones del menú */
+  .menu-button-container {
+    display: flex;
+    align-items: center;
+  }
+  
+ /* Estilos para el botón de la hamburguesa */
+.menu-button {
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 1rem; /* Ajustar el valor según sea necesario */
+    transform: translateY(-50%);
+  }
+  
+  /* Estilos para las listas de menú */
+  .menu-list,
+  .contact-list {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-size: 1.6rem;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    right: 0;
+    top: 60px;
+  }
+  
+  .menu-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Estilos para el texto de carga */
+  .loading-text {
+    color: #fff;
+    margin-top: 40px;
+  }
+  
+  /* Estilos para el carrito */
+  .cart-container {
+    display: flex;
+    align-items: center;
+  }
