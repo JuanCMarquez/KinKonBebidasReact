@@ -23,24 +23,25 @@ const Navbar = ({ loading }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        productosRef.current &&
-        !productosRef.current.contains(event.target)
-      ) {
+      if (productosRef.current && !productosRef.current.contains(event.target)) {
         setShowProductos(false);
       }
-      if (
-        contactosRef.current &&
-        !contactosRef.current.contains(event.target)
-      ) {
+      if (contactosRef.current && !contactosRef.current.contains(event.target)) {
         setShowContactos(false);
       }
     };
 
+    const handleScroll = () => {
+      setShowProductos(false);
+      setShowContactos(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.removeventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -51,39 +52,39 @@ const Navbar = ({ loading }) => {
       category.nombre.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestedCategories(filteredCategories);
-    setActiveSuggestion(0); // Restablecer la sugerencia activa
+    setActiveSuggestion(0);
   };
 
   const handleCategorySelection = (category) => {
-    navigate(`/category/${category.id}`); // Redirigir a la categoría seleccionada
-    setSearchTerm(''); // Limpiar el campo de búsqueda después de la redirección
-    setSuggestedCategories([]); // Limpiar las sugerencias
+    navigate(`/category/${category.id}`);
+    setSearchTerm('');
+    setSuggestedCategories([]);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (suggestedCategories.length > 0) {
-      handleCategorySelection(suggestedCategories[activeSuggestion]); // Seleccionar la sugerencia activa
+      handleCategorySelection(suggestedCategories[activeSuggestion]);
     } else {
-      navigate('/'); // Redirigir a la página de inicio si no hay coincidencias
+      navigate('/');
     }
 
-    setSearchTerm(''); // Limpiar el campo de búsqueda después del envío
-    setSuggestedCategories([]); // Limpiar las sugerencias
+    setSearchTerm('');
+    setSuggestedCategories([]);
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      event.preventDefault(); // Para evitar que se envíe el formulario de forma predeterminada
-      handleSubmit(event); // Ejecutar el envío del formulario
+      event.preventDefault();
+      handleSubmit(event);
     } else if (event.key === 'ArrowUp') {
-      event.preventDefault(); // Para evitar el desplazamiento natural del navegador
+      event.preventDefault();
       if (suggestedCategories.length > 0) {
         setActiveSuggestion((prev) => (prev > 0 ? prev - 1 : suggestedCategories.length - 1));
       }
     } else if (event.key === 'ArrowDown') {
-      event.preventDefault(); // Para evitar el desplazamiento natural del navegador
+      event.preventDefault();
       if (suggestedCategories.length > 0) {
         setActiveSuggestion((prev) => (prev < suggestedCategories.length - 1 ? prev + 1 : 0));
       }
