@@ -21,6 +21,19 @@ const Navbar = ({ loading }) => {
   ];
 
   useEffect(() => {
+    const handleScroll = () => {
+      setShowContactos(false);
+      setShowProductos(false);
+    };
+
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (productosRef.current && !productosRef.current.contains(event.target)) {
         setShowProductos(false);
@@ -123,9 +136,9 @@ const Navbar = ({ loading }) => {
         </div>
 
         <div className='ml-4 flex items-center justify-end p-6 relative'>
-          <Link to="/category">
-            <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
-          </Link>
+
+          <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
+
           {loading && <div className="text-white mt-40">Cargando...</div>}
           {!loading && showProductos && (
             <ul
@@ -147,9 +160,7 @@ const Navbar = ({ loading }) => {
         </div>
 
         <div className='ml-4 flex items-center justify-end p-6 relative'>
-          <Link to="/contact">
-            <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
-          </Link>
+          <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
           {showContactos && (
             <ul ref={contactosRef} className='absolute bg-white border border-black text-xl p-3 rounded-xl right-0 top-[60px]'>
               <li className='text-black'>WhatsApp: 351621723</li>
