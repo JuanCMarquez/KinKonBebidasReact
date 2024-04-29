@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import logo from '../assets/images/logo2KINKON.png';
 import lupa from '../assets/images/lupablanca2.png';
 
 const Navbar = ({ loading }) => {
+  const navigate = useNavigate();
   const [showProductos, setShowProductos] = useState(false);
   const [showContactos, setShowContactos] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,24 +22,17 @@ const Navbar = ({ loading }) => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowContactos(false);
-      setShowProductos(false);
-    };
-
-    document.addEventListener('scroll', handleScroll);
-
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleClickOutside = (event) => {
-      if (productosRef.current && !productosRef.current.contains(event.target)) {
+      if (
+        productosRef.current &&
+        !productosRef.current.contains(event.target)
+      ) {
         setShowProductos(false);
       }
-      if (contactosRef.current && !contactosRef.current.contains(event.target)) {
+      if (
+        contactosRef.current &&
+        !contactosRef.current.contains(event.target)
+      ) {
         setShowContactos(false);
       }
     };
@@ -53,7 +47,7 @@ const Navbar = ({ loading }) => {
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchTerm(value);
-    const filteredCategories = categorias.filter(category =>
+    const filteredCategories = categorias.filter((category) =>
       category.nombre.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestedCategories(filteredCategories);
@@ -62,43 +56,45 @@ const Navbar = ({ loading }) => {
   const handleCategorySelection = (category) => {
     setSearchTerm(category.nombre);
     setSuggestedCategories([]);
+    navigate(`/category/${category.id}`); 
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     if (searchTerm.trim() === '') {
-      window.location.href = '/';
+      navigate('/'); 
     } else {
-      const matchedCategory = categorias.find(category => category.nombre.toLowerCase() === searchTerm.toLowerCase());
+      const matchedCategory = categorias.find(
+        (category) => category.nombre.toLowerCase() === searchTerm.toLowerCase()
+      );
       if (matchedCategory) {
-        // Redireccionar a la página de la categoría coincidente
-        window.location.href = `/category/${matchedCategory.id}`;
-      } else if (suggestedCategories.length > 0 && suggestedCategories[activeSuggestion]) {
-        // Si hay sugerencias y la sugerencia activa está disponible
-        const suggestedCategory = suggestedCategories[activeSuggestion];
-        setSearchTerm(suggestedCategory.nombre);
-        // Redireccionar a la página de la sugerencia activa
-        window.location.href = `/category/${suggestedCategory.id}`;
+        navigate(`/category/${matchedCategory.id}`); 
       } else {
-        // Si no se encontró una coincidencia exacta y no hay sugerencias disponibles, redirigir a la página principal
-        window.location.href = "/";
+        navigate('/'); 
       }
-    }
-  };
-
-  const handleLupaClick = () => {
-    if (searchTerm.trim() !== '') {
-      // Manejar búsqueda
     }
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowUp') {
-      // Manejar tecla de flecha hacia arriba
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        setActiveSuggestion(
+          (prev) => (prev > 0 ? prev - 1 : suggestedCategories.length - 1)
+        );
+      }
     } else if (event.key === 'ArrowDown') {
-      // Manejar tecla de flecha hacia abajo
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        setActiveSuggestion(
+          (prev) => (prev < suggestedCategories.length - 1 ? prev + 1 : 0)
+        );
+      }
     } else if (event.key === 'Enter') {
-      // Manejar tecla de enter
+      event.preventDefault();
+      if (suggestedCategories.length > 0) {
+        handleCategorySelection(suggestedCategories[activeSuggestion]); 
+      }
     }
   };
 
@@ -110,32 +106,31 @@ const Navbar = ({ loading }) => {
             <img src={logo} alt="Icono Gorila Color" className="h-auto w-24 sm:w-32 md:w-40 lg:w-48 xl:w-56 flex-grow" />
           </Link>
         </div>
+
         <div className='hidden lg:flex justify-center items-center flex-grow'>
-          <button className='p-3 h-auto w-auto border-none bg-transparent' onClick={handleLupaClick}>
-            <img src={lupa} alt="lupaNav" className="h-auto w-6 sm:w-8 md:w-10 lg:w-12 xl:w-14" />
-          </button>
-          <form className='bg-white p-3 h-full w-full rounded flex-grow justify-center items-center' onSubmit={handleSubmit}>
+          <form
+            className='bg-white p-3 h-full w-full rounded'
+            onSubmit={handleSubmit}
+          >
             <input
-              className='bg-white p-1 h-[40%] w-full type="text"'
+              className='bg-white p-1 h-[40%] w-full'
+              type="text"
               value={searchTerm}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
             />
             {suggestedCategories.length > 0 && (
               <ul
-                className='absolute bg-white border border-black text-xl p-2 rounded-xl max-w-[200px]'
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                className='absolute bg-white border negro text-xl p-2 rounded'
               >
                 {suggestedCategories.map((category, index) => (
                   <li
                     key={category.id}
-                    className={`text-black cursor-pointer ${isHovered && index === activeSuggestion ? 'bg-gray-200' : ''}`}
+                    className={`cursor-pointer ${index === activeSuggestion ? 'bg-gray-200' : ''
+                      }`}
                     onClick={() => handleCategorySelection(category)}
                   >
-                    <Link to={`/category/${category.id}`}>
-                      {category.nombre}
-                    </Link>
+                    {category.nombre}
                   </li>
                 ))}
               </ul>
@@ -144,9 +139,7 @@ const Navbar = ({ loading }) => {
         </div>
 
         <div className='ml-4 flex items-center justify-end p-6 relative'>
-
           <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
-
           {loading && <div className="text-white mt-40">Cargando...</div>}
           {!loading && showProductos && (
             <ul
@@ -156,11 +149,7 @@ const Navbar = ({ loading }) => {
             >
               {categorias.map(category => (
                 <li key={category.id} className='text-black pb-1'>
-                  <span className='hover:underline' onClick={() => handleCategorySelection(category)}>
-                    <Link to={`/category/${category.id}`}>
-                      {category.nombre}
-                    </Link>
-                  </span>
+                  <span className='hover:underline' onClick={() => handleCategorySelection(category)}>{category.nombre}</span>
                 </li>
               ))}
             </ul>
