@@ -37,10 +37,17 @@ const Navbar = ({ loading }) => {
       }
     };
 
+    const handleScroll = () => {
+      setShowProductos(false);
+      setShowContactos(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('scroll', handleScroll);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -87,7 +94,7 @@ const Navbar = ({ loading }) => {
       event.preventDefault();
       if (suggestedCategories.length > 0) {
         setActiveSuggestion(
-          (prev) => (prev < suggestedCategories.length - 1 ? prev + 1 : 0)
+          (prev < suggestedCategories.length - 1 ? prev + 1 : 0)
         );
       }
     } else if (event.key === 'Enter') {
@@ -97,7 +104,7 @@ const Navbar = ({ loading }) => {
       }
     }
   };
-
+  
   return (
     <nav className='bg-black py-4 w-full fixed top-0 z-50'>
       <div className='container mx-auto flex justify-between items-center flex-grow'>

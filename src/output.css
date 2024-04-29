@@ -590,16 +590,16 @@ video {
   position: relative;
 }
 
-.top-0 {
-  top: 0px;
-}
-
 .right-0 {
   right: 0px;
 }
 
 .right-\[10px\] {
   right: 10px;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .top-\[60px\] {
@@ -648,6 +648,10 @@ video {
   margin-left: 0.75rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .ms-2 {
   margin-inline-start: 0.5rem;
 }
@@ -664,20 +668,16 @@ video {
   margin-top: 1rem;
 }
 
+.mt-40 {
+  margin-top: 10rem;
+}
+
 .mt-60 {
   margin-top: 15rem;
 }
 
 .mt-\[180px\] {
   margin-top: 180px;
-}
-
-.ml-4 {
-  margin-left: 1rem;
-}
-
-.mt-40 {
-  margin-top: 10rem;
 }
 
 .block {
@@ -712,6 +712,10 @@ video {
   width: 6rem;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .w-\[24\%\] {
   width: 24%;
 }
@@ -722,22 +726,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-6 {
-  width: 1.5rem;
-}
-
-.w-8 {
-  width: 2rem;
-}
-
-.w-auto {
-  width: auto;
-}
-
-.max-w-\[200px\] {
-  max-width: 200px;
 }
 
 .max-w-md {
@@ -802,10 +790,6 @@ video {
   border-width: 1px;
 }
 
-.border-none {
-  border-style: none;
-}
-
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -829,10 +813,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-  background-color: transparent;
 }
 
 .p-0 {
@@ -968,30 +948,22 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:w-32 {
-    width: 8rem;
-  }
-
   .sm\:w-10 {
     width: 2.5rem;
   }
 
-  .sm\:w-8 {
-    width: 2rem;
+  .sm\:w-32 {
+    width: 8rem;
   }
 }
 
 @media (min-width: 768px) {
-  .md\:w-40 {
-    width: 10rem;
-  }
-
-  .md\:w-10 {
-    width: 2.5rem;
-  }
-
   .md\:w-12 {
     width: 3rem;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
   }
 
   .md\:text-xl {
@@ -1005,16 +977,12 @@ video {
     display: flex;
   }
 
-  .lg\:w-48 {
-    width: 12rem;
-  }
-
-  .lg\:w-12 {
-    width: 3rem;
-  }
-
   .lg\:w-14 {
     width: 3.5rem;
+  }
+
+  .lg\:w-48 {
+    width: 12rem;
   }
 
   .lg\:text-xl {
@@ -1024,15 +992,11 @@ video {
 }
 
 @media (min-width: 1280px) {
-  .xl\:w-56 {
-    width: 14rem;
-  }
-
-  .xl\:w-14 {
-    width: 3.5rem;
-  }
-
   .xl\:w-16 {
     width: 4rem;
+  }
+
+  .xl\:w-56 {
+    width: 14rem;
   }
 }
