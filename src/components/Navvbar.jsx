@@ -49,13 +49,12 @@ const Navbar = ({ loading }) => {
   const handleCategorySelection = (category) => {
     setSearchTerm(category.nombre);
     setSuggestedCategories([]);
-    window.location.href = `/category/${category.id}`;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchTerm.trim() === '') {
-      window.location.href = '/'; 
+      window.location.href = '/';
     } else {
       const matchedCategory = categorias.find(category => category.nombre.toLowerCase() === searchTerm.toLowerCase());
       if (matchedCategory) {
@@ -68,26 +67,17 @@ const Navbar = ({ loading }) => {
 
   const handleLupaClick = () => {
     if (searchTerm.trim() !== '') {
-      handleSubmit(); 
+      // Manejar búsqueda
     }
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      if (suggestedCategories.length > 0) {
-        setActiveSuggestion(prevActiveSuggestion => (prevActiveSuggestion > 0 ? prevActiveSuggestion - 1 : suggestedCategories.length - 1));
-      }
+      // Manejar tecla de flecha hacia arriba
     } else if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (suggestedCategories.length > 0) {
-        setActiveSuggestion(prevActiveSuggestion => (prevActiveSuggestion < suggestedCategories.length - 1 ? prevActiveSuggestion + 1 : 0));
-      }
+      // Manejar tecla de flecha hacia abajo
     } else if (event.key === 'Enter') {
-      event.preventDefault();
-      if (suggestedCategories.length > 0) {
-        handleCategorySelection(suggestedCategories[activeSuggestion]);
-      }
+      // Manejar tecla de enter
     }
   };
 
@@ -122,7 +112,9 @@ const Navbar = ({ loading }) => {
                     className={`text-black cursor-pointer ${isHovered && index === activeSuggestion ? 'bg-gray-200' : ''}`}
                     onClick={() => handleCategorySelection(category)}
                   >
-                    {category.nombre}
+                    <Link to={`/category/${category.id}`}>
+                      {category.nombre}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -131,7 +123,9 @@ const Navbar = ({ loading }) => {
         </div>
 
         <div className='ml-4 flex items-center justify-end p-6 relative'>
-          <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
+          <Link to="/category">
+            <button className='text-white text-xl hover:text-green-400' onClick={() => setShowProductos(!showProductos)}> Productos</button>
+          </Link>
           {loading && <div className="text-white mt-40">Cargando...</div>}
           {!loading && showProductos && (
             <ul
@@ -141,7 +135,11 @@ const Navbar = ({ loading }) => {
             >
               {categorias.map(category => (
                 <li key={category.id} className='text-black pb-1'>
-                  <span className='hover:underline' onClick={() => handleCategorySelection(category)}>{category.nombre}</span>
+                  <span className='hover:underline' onClick={() => handleCategorySelection(category)}>
+                    <Link to={`/category/${category.id}`}>
+                      {category.nombre}
+                    </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -149,7 +147,9 @@ const Navbar = ({ loading }) => {
         </div>
 
         <div className='ml-4 flex items-center justify-end p-6 relative'>
-          <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
+          <Link to="/contact">
+            <button className='text-white text-xl hover:text-green-400' onClick={() => setShowContactos(!showContactos)}> Contacto</button>
+          </Link>
           {showContactos && (
             <ul ref={contactosRef} className='absolute bg-white border border-black text-xl p-3 rounded-xl right-0 top-[60px]'>
               <li className='text-black'>WhatsApp: 351621723</li>
